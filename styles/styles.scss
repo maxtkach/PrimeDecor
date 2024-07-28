@@ -302,6 +302,10 @@ p {
     display: flex;
     flex-direction: column;
     gap: 15px;
+
+    @include mobile {
+        padding-inline: 10px;
+    }
 }
 
 
@@ -445,6 +449,12 @@ p {
     /* Толщина и цвет обводки */
     -webkit-text-fill-color: transparent;
     /* Для поддержки в Webkit браузерах */
+
+    @include mobile{
+    font-size: 83px;
+    line-height: 99px;
+    -webkit-text-stroke: 2px var(--transparent-text-mobile);
+    }
 }
 
 .contact-title,
@@ -478,6 +488,6 @@ p {
     font-size: 20px;
 
     @include mobile {
-        font-size: 14px;
+        font-size: 12px;
     }
 }

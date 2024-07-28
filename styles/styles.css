@@ -239,6 +239,7 @@ p {
   --radius: 11px;
   --transparent-35: rgba(white, 0.35);
   --transparent-text: rgba(0,0,0, 0.15);
+  --transparent-text-mobile: rgba(0,0,0, 0.09);
   --blackout-photo: rgba(0, 0, 0, 0.50);
   --font-family-base: "Manrope", sans-serif;
   --font-family-logo: "Rufina", sans-serif;
@@ -535,6 +536,11 @@ p {
   flex-direction: column;
   gap: 15px;
 }
+@media (max-width: 767px) {
+  .why-cards {
+    padding-inline: 10px;
+  }
+}
 
 .why-cards__item {
   display: flex;
@@ -678,6 +684,13 @@ p {
   -webkit-text-fill-color: transparent;
   /* Для поддержки в Webkit браузерах */
 }
+@media (max-width: 767px) {
+  .contact::before {
+    font-size: 83px;
+    line-height: 99px;
+    -webkit-text-stroke: 2px var(--transparent-text-mobile);
+  }
+}
 
 .contact-title,
 .contact-text {
@@ -715,6 +728,6 @@ p {
 }
 @media (max-width: 767px) {
   .footer-text {
-    font-size: 14px;
+    font-size: 12px;
   }
 }/*# sourceMappingURL=styles.css.map */
