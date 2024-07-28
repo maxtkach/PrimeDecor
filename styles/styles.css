@@ -1,0 +1,720 @@
+@charset "UTF-8";
+/**
+  Нормализация блочной модели
+ */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+ */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+ */
+body,
+:where(blockquote, figure):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  margin-left: 0;
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+ */
+p {
+  --paragraphMarginBottom: 24px;
+  margin-block: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+ */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+/**
+  Упрощаем работу с изображениями
+ */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  height: 100%;
+}
+
+/**
+  Плавный скролл
+ */
+html,
+:has(:target) {
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  min-height: 100%;
+  /**
+    Унифицированный интерлиньяж
+   */
+  line-height: 1.5;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+ */
+svg *[fill] {
+  fill: currentColor;
+}
+
+svg *[stroke] {
+  stroke: currentColor;
+}
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+ */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-Semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Rufina";
+  src: url("../fonts/Rufina-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+body {
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  color: var(--color-light);
+  background-color: var(--color-dark);
+}
+
+a,
+button,
+input,
+textarea,
+svg * {
+  transition-duration: 0.3s;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1 {
+  font-size: 80px;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: 48px;
+  font-weight: 600;
+}
+
+p {
+  font-size: 32px;
+}
+
+:root {
+  --color-dark: #141414;
+  --color-light: #fff;
+  --color-black: #000;
+  --color-gray: #BCBCBC;
+  --color-line-gray: #525252;
+  --line: 2px solid var(--color-light);
+  --radius: 11px;
+  --transparent-35: rgba(white, 0.35);
+  --transparent-text: rgba(0,0,0, 0.15);
+  --blackout-photo: rgba(0, 0, 0, 0.50);
+  --font-family-base: "Manrope", sans-serif;
+  --font-family-logo: "Rufina", sans-serif;
+}
+
+@media (max-width: 1023px) {
+  h1 {
+    font-size: 70px;
+  }
+}
+@media (max-width: 767px) {
+  h1 {
+    font-size: 45px;
+  }
+}
+@media (max-width: 480px) {
+  h1 {
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 1023px) {
+  h2 {
+    font-size: 35px;
+  }
+}
+@media (max-width: 767px) {
+  h2 {
+    font-size: 35px;
+  }
+}
+@media (max-width: 480px) {
+  h2 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 1023px) {
+  p {
+    font-size: 26px;
+  }
+}
+@media (max-width: 767px) {
+  p {
+    font-size: 22px;
+  }
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  padding-block: 35px;
+}
+
+.container {
+  padding-inline: 250px;
+}
+@media (max-width: 1023px) {
+  .container {
+    padding-inline: 50px;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1281px) {
+  .container {
+    padding-inline: 100px;
+  }
+}
+
+.header-logo {
+  font-family: var(--font-family-logo);
+  font-size: 32px;
+  text-transform: uppercase;
+  align-content: center;
+}
+
+.header-navbar {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header-navbar ul {
+  display: flex;
+  flex-direction: row;
+  z-index: 1000;
+}
+
+.header-navbar__item {
+  list-style: none;
+  font-size: 22px;
+  padding-inline: 40px;
+  color: var(--color-gray);
+}
+.header-navbar__item.active {
+  color: var(--color-light);
+}
+.header-navbar__item:hover {
+  color: var(--color-light);
+}
+@media (max-width: 1023px) {
+  .header-navbar__item {
+    font-size: 19px;
+    padding-inline: 20px;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1281px) {
+  .header-navbar__item {
+    font-size: 22px;
+    padding-inline: 20px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .header-navbar__item {
+    font-size: 19px;
+    padding-inline: 10px;
+  }
+}
+
+.header-burger {
+  display: none;
+  /* Скрываем бургер-меню по умолчанию */
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-light);
+}
+
+.header-burger .burger-icon,
+.header-burger .close-icon {
+  display: none;
+  /* Скрываем обе иконки по умолчанию */
+}
+
+.header-burger.active .burger-icon,
+.header-burger:not(.active) .close-icon {
+  display: none;
+  /* Скрываем соответствующие иконки */
+}
+
+.header-burger:not(.active) .burger-icon {
+  display: block;
+  /* Показываем бургер-иконку */
+}
+
+.header-burger.active .close-icon {
+  display: block;
+  /* Показываем иконку крестика */
+}
+
+@media (max-width: 767px) {
+  .header-burger {
+    display: block;
+    /* Показываем бургер-меню на мобильных устройствах */
+  }
+  .header-navbar {
+    display: none;
+    /* Скрываем навигацию по умолчанию на малых экранах */
+    flex-direction: column;
+    background-color: var(--color-black);
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    padding: 10px 0;
+  }
+  .header-navbar ul {
+    flex-direction: column;
+  }
+  .header-navbar__item {
+    padding-block: 15px;
+    color: var(--color-light);
+  }
+  .header-navbar.active {
+    display: flex;
+    /* Показываем навигацию при нажатии на бургер-меню */
+  }
+}
+.slider {
+  width: 100%;
+  height: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 1s ease-in-out;
+  justify-content: center;
+  position: relative;
+}
+@media (max-width: 1023px) {
+  .slider {
+    height: 600px;
+  }
+}
+@media (max-width: 767px) {
+  .slider {
+    height: 400px;
+  }
+}
+@media (max-width: 767px) {
+  .slider-heading {
+    line-height: 50px;
+  }
+}
+@media (max-width: 480px) {
+  .slider-heading {
+    line-height: 45px;
+  }
+}
+.slider-heading, .slider-text {
+  position: relative;
+  z-index: 2;
+  color: var(--color-light);
+  transition: opacity 1s ease-in-out;
+}
+.slider-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: opacity 1s ease-in-out;
+  z-index: 1;
+}
+
+.about {
+  padding-block: 120px;
+}
+@media (max-width: 1023px) {
+  .about {
+    padding-block: 40px;
+  }
+}
+
+.withline-long h2::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin-block: 35px;
+  background-color: var(--color-light);
+}
+.withline-light h2::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 2px;
+  margin-block: 15px;
+  background-color: var(--color-line-gray);
+}
+.withline h2::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 2px;
+  background-color: var(--color-light);
+  margin-block: 15px;
+}
+
+.why {
+  color: var(--color-black);
+  padding-block: 80px;
+  background-image: url(../icons/bg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+@media (max-width: 767px) {
+  .why {
+    padding-block: 40px;
+  }
+}
+
+.why-list__item {
+  list-style: disc;
+  padding-bottom: 20px;
+}
+.why-list__item::marker {
+  font-size: 25px;
+}
+.why-list__item p {
+  padding-left: 5px;
+}
+
+.why-cards {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.why-cards__item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-inline: 50px;
+  padding-block: 25px;
+  color: var(--color-light);
+  background-color: var(--color-dark);
+  border-radius: var(--radius);
+}
+@media (max-width: 767px) {
+  .why-cards__item {
+    padding-inline: 50px;
+    padding-block: 10px;
+  }
+}
+.why-cards__item-text {
+  list-style: disc;
+  align-self: center;
+}
+.why-cards__item-text::marker {
+  font-size: 25px;
+}
+.why-cards__item-text p span {
+  font-weight: 800;
+}
+.why-cards__item-icon {
+  width: 60px;
+}
+
+.photo-gallery {
+  padding-block: 100px;
+}
+@media (max-width: 1023px) {
+  .photo-gallery {
+    padding-block: 50px;
+  }
+}
+
+.gallery-more-text {
+  cursor: pointer;
+}
+
+.photos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 25px;
+}
+@media (max-width: 767px) {
+  .photos {
+    grid-gap: 15px;
+    grid-template-columns: repeat(1, 3fr);
+  }
+}
+
+.photos__item {
+  width: 100%;
+  height: 280px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: var(--radius);
+  position: relative;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+@media (max-width: 1023px) {
+  .photos__item {
+    height: 200px;
+  }
+}
+
+.hidden {
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+  /* Отключаем взаимодействие */
+}
+
+.large-photo {
+  grid-column: span 2;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--blackout-photo);
+  opacity: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.photos__item:hover .overlay {
+  opacity: 1;
+}
+
+.contact {
+  background-color: var(--color-light);
+  color: var(--color-black);
+  padding-block: 120px;
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 767px) {
+  .contact {
+    padding-block: 50px;
+  }
+}
+@media (max-width: 480px) {
+  .contact {
+    padding-block: 25px;
+  }
+}
+
+.contact::before {
+  content: "CONTACT\aINFO";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 250px;
+  font-weight: 800;
+  white-space: pre;
+  /* или pre-line */
+  z-index: 2;
+  line-height: 200px;
+  pointer-events: none;
+  display: block;
+  text-align: left;
+  color: transparent;
+  /* Цвет внутреннего текста */
+  -webkit-text-stroke: 2px var(--transparent-text);
+  /* Толщина и цвет обводки */
+  -webkit-text-fill-color: transparent;
+  /* Для поддержки в Webkit браузерах */
+}
+
+.contact-title,
+.contact-text {
+  position: relative;
+  z-index: 1;
+  /* чтобы текст был выше фона */
+}
+
+.contact-text span {
+  font-weight: 600;
+  font-size: 36px;
+}
+@media (max-width: 1023px) {
+  .contact-text span {
+    font-size: 25px;
+  }
+}
+
+.footer-section {
+  height: 100px;
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 767px) {
+  .footer-section {
+    height: 50px;
+  }
+}
+
+.footer-text {
+  font-size: 20px;
+}
+@media (max-width: 767px) {
+  .footer-text {
+    font-size: 14px;
+  }
+}/*# sourceMappingURL=styles.css.map */
