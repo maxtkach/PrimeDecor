@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 const images = [
-  '../images/kitchen13.jpg',
+  '../images/kitchen12.jpg',
   '../images/kitchen15.jpg',
   '../images/kitchen4.jpg'
 ];
@@ -26,7 +26,7 @@ const headings = [
 const texts = [
   '',
   'No project delays.',
-  'No lack of communication regarding projects progress.'
+  'No lack of communication regarding project`s progress.'
 ];
 let currentIndex = 0;
 
@@ -64,15 +64,13 @@ document.addEventListener('DOMContentLoaded', function () {
   const photoPaths = [
     '../images/kitchen1.jpg',
     '../images/kitchen2.jpg',
-    '../images/kitchen3.jpg',
     '../images/kitchen4.jpg',
     '../images/kitchen5.jpg',
-    '../images/kitchen5.jpg',
-    '../images/kitchen6.jpg',
-    '../images/kitchen7.jpg',
-    '../images/kitchen8.jpg',
     '../images/kitchen9.jpg',
-    '../images/kitchen10.jpg',
+    '../images/kitchen12.jpg',
+    '../images/kitchen2-1.jpg',
+    '../images/kitchen2-2.jpg',
+    '../images/kitchen2-3.jpg',
     // Добавьте остальные пути к фотографиям...
   ];
 

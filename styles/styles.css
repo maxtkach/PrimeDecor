@@ -284,7 +284,8 @@ p {
 }
 @media (max-width: 767px) {
   p {
-    font-size: 22px;
+    font-size: 21px;
+    line-height: 28px;
   }
 }
 
@@ -699,10 +700,6 @@ p {
   /* чтобы текст был выше фона */
 }
 
-.contact-text span {
-  font-weight: 600;
-  font-size: 36px;
-}
 @media (max-width: 1023px) {
   .contact-text span {
     font-size: 25px;

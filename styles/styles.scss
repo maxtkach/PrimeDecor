@@ -36,7 +36,8 @@ p {
     }
 
     @include mobile {
-        font-size: 22px;
+        font-size: 21px;
+        line-height:28px;
     }
 
 
@@ -465,13 +466,15 @@ p {
 }
 
 .contact-text span {
-    font-weight: 600;
-    font-size: 36px;
 
     @include tablet {
         font-size: 25px;
     }
 }
+
+
+
+
 
 .footer-section {
     height: 100px;
