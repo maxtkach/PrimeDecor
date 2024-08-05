@@ -494,3 +494,12 @@ p {
         font-size: 12px;
     }
 }
+
+
+.slider-overlay {
+    transition: background-image 1s ease-in-out;
+  }
+  .slider-heading, .slider-text {
+
+    transition: opacity 0.5s ease-in-out;
+  }

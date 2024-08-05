@@ -30,6 +30,13 @@ const texts = [
 ];
 let currentIndex = 0;
 
+// Предварительная загрузка изображений
+const preloadedImages = [];
+images.forEach((src, index) => {
+  preloadedImages[index] = new Image();
+  preloadedImages[index].src = src;
+});
+
 function changeSlide() {
   const overlay = document.querySelector('.slider-overlay');
   const heading = document.querySelector('.slider-heading');
@@ -40,16 +47,12 @@ function changeSlide() {
   text.style.opacity = 0;
 
   setTimeout(() => {
-    overlay.style.opacity = 0;
-    setTimeout(() => {
-      // Изменение фонового изображения
-      overlay.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${images[currentIndex]})`;
-      overlay.style.opacity = 1;
-    }, 500);
-
-    // Обновление текста
+    // Изменение фонового изображения
+    overlay.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${images[currentIndex]})`;
     heading.innerHTML = headings[currentIndex];
     text.textContent = texts[currentIndex];
+    
+    // Плавное появление текста
     heading.style.opacity = 1;
     text.style.opacity = 1;
   }, 500);
