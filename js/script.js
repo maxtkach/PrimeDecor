@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-function validateForm() {
+function validateAndSubmitForm() {
   var name = document.getElementById("name").value;
   var email = document.getElementById("email").value;
   var phone = document.getElementById("phone").value;
@@ -141,7 +141,14 @@ function validateForm() {
       alert("Please fill in all required fields.");
       return false;
   }
-  return true; // Возвращаем true, чтобы отправить форму
+  return true; // Если валидация прошла, отправляем форму
+}
+
+function onFormSubmit() {
+  // Проверяем, что форма была отправлена, и делаем переадресацию
+  if (document.activeElement.type === "submit") {
+      window.location.href = "../thanks.html";
+  }
 }
 
 

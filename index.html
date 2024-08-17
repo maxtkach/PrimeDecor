@@ -121,7 +121,7 @@
             <div class="contact-content">
                 <form id="customForm"
                     action="https://docs.google.com/forms/d/e/1FAIpQLSdB0RNNNaiRVLQyKW2r9siZkQvZO6jGthmM1bmb-Pu1xsRMMQ/formResponse"
-                    method="post" target="hidden_iframe" onsubmit="return validateForm();">
+                    method="post" target="hidden_iframe" onsubmit="return validateAndSubmitForm();">
                     <h2 class="contact-title">Please contact us to get a free quote or consultation</h2>
                     <div class="contact-form-row">
                         <div class="contact-form-section">
@@ -143,9 +143,9 @@
                             <input type="text" name="entry.47714304" id="phone">
                         </div>
                     </div>
-                    <button type="Submit">Submit Form</button>
+                    <button type="Submit">Submit</button>
                 </form>
-                <iframe name="hidden_iframe" style="display:none;"></iframe>
+                <iframe name="hidden_iframe" style="display:none;" onload="onFormSubmit();" ></iframe>
             </div>
             <div class="contact-content left">
                 <h2 class="contact-title">Contact Info</h2>
