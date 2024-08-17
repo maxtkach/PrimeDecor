@@ -37,7 +37,7 @@ p {
 
     @include mobile {
         font-size: 21px;
-        line-height:28px;
+        line-height: 28px;
     }
 
 
@@ -414,11 +414,22 @@ p {
 }
 
 .contact {
+    gap: 100px;
+    display: flex;
+    flex-direction: row;
     background-color: var(--color-light);
     color: var(--color-black);
     padding-block: 120px;
     position: relative;
     overflow: hidden;
+
+    @include desktop {
+        flex-direction: column;
+    }
+
+    @include tablet{
+        gap: 30px;
+    }
 
     @include mobile {
         padding-block: 50px;
@@ -428,6 +439,7 @@ p {
         padding-block: 25px;
     }
 }
+
 
 .contact::before {
     content: 'CONTACT\AINFO';
@@ -451,10 +463,10 @@ p {
     -webkit-text-fill-color: transparent;
     /* Для поддержки в Webkit браузерах */
 
-    @include mobile{
-    font-size: 83px;
-    line-height: 99px;
-    -webkit-text-stroke: 2px var(--transparent-text-mobile);
+    @include mobile {
+        font-size: 83px;
+        line-height: 99px;
+        -webkit-text-stroke: 2px var(--transparent-text-mobile);
     }
 }
 
@@ -471,6 +483,84 @@ p {
         font-size: 25px;
     }
 }
+
+.contact-content form {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    width: 800px;
+    @include mobile{
+        width: auto;
+    }
+    & input {
+        border-radius: var(--radius);
+        border-color: var(--color-gray);
+        height: 50px;
+        margin-bottom: 30px;
+        background-color: #fafafa;
+        margin-right: 30px;
+        border-style: solid;
+        z-index: 20;
+
+        @include mobile{
+            margin-bottom: 10px;
+        }
+    }
+
+    & button {
+        display: flex;
+        flex-direction: column;
+        width: 160px;
+        justify-content: center;
+        align-items: center;
+        height: 60px;
+        border-radius: var(--radius);
+        border: none;
+        background-color: var(--color-black);
+        color: var(--color-light);
+        transition: all 0.3s;
+
+        @include mobile{
+            width: 320px;
+        }
+
+        &:hover{
+            color: var(--color-black);
+            background-color: var(--color-gray);
+            border-color: var(--color-black);
+            cursor: pointer;
+        }
+    }
+
+    & label {
+        font-size: 28px;
+
+        & span {
+            color: red;
+        }
+    }
+}
+
+
+
+.contact-form {
+    &-row {
+        display: flex;
+        flex-direction: row;
+
+        @include mobile{
+            flex-direction: column;
+        }
+    }
+
+    &-section {
+        display: flex;
+        flex-direction: column;
+        width: 350px;
+    }
+}
+
+
 
 
 
@@ -498,8 +588,10 @@ p {
 
 .slider-overlay {
     transition: background-image 1s ease-in-out;
-  }
-  .slider-heading, .slider-text {
+}
+
+.slider-heading,
+.slider-text {
 
     transition: opacity 0.5s ease-in-out;
-  }
+}

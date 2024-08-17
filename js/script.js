@@ -20,13 +20,13 @@ const images = [
 ];
 const headings = [
   'Your Vision - Our Expertise <br> Kitchen remodeling done right',
-  'BETTER & <br> FASTER',
-  'Always <br> In touch'
+  'Your Vision - Our Expertise <br> Kitchen remodeling done right',
+  'Your Vision - Our Expertise <br> Kitchen remodeling done right'
 ];
 const texts = [
   '',
-  'No project delays.',
-  'No lack of communication regarding project`s progress.'
+  '',
+  ''
 ];
 let currentIndex = 0;
 
@@ -40,21 +40,16 @@ images.forEach((src, index) => {
 function changeSlide() {
   const overlay = document.querySelector('.slider-overlay');
   const heading = document.querySelector('.slider-heading');
-  const text = document.querySelector('.slider-text');
 
   // Плавное затухание текста
   heading.style.opacity = 0;
-  text.style.opacity = 0;
 
   setTimeout(() => {
     // Изменение фонового изображения
     overlay.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${images[currentIndex]})`;
-    heading.innerHTML = headings[currentIndex];
-    text.textContent = texts[currentIndex];
-    
+    heading.innerHTML = headings[currentIndex];    
     // Плавное появление текста
     heading.style.opacity = 1;
-    text.style.opacity = 1;
   }, 500);
 
   currentIndex = (currentIndex + 1) % images.length;
@@ -135,5 +130,18 @@ document.addEventListener('DOMContentLoaded', function () {
   // Показать первую партию фотографий при загрузке страницы
   displayPhotos();
 });
+
+
+function validateForm() {
+  var name = document.getElementById("name").value;
+  var email = document.getElementById("email").value;
+  var phone = document.getElementById("phone").value;
+
+  if (name == "" || email == "" || phone == "") {
+      alert("Please fill in all required fields.");
+      return false;
+  }
+  return true; // Возвращаем true, чтобы отправить форму
+}
 
 

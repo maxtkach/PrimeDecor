@@ -646,11 +646,24 @@ p {
 }
 
 .contact {
+  gap: 100px;
+  display: flex;
+  flex-direction: row;
   background-color: var(--color-light);
   color: var(--color-black);
   padding-block: 120px;
   position: relative;
   overflow: hidden;
+}
+@media (max-width: 1280px) {
+  .contact {
+    flex-direction: column;
+  }
+}
+@media (max-width: 1023px) {
+  .contact {
+    gap: 30px;
+  }
 }
 @media (max-width: 767px) {
   .contact {
@@ -706,6 +719,78 @@ p {
   }
 }
 
+.contact-content form {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  width: 800px;
+}
+@media (max-width: 767px) {
+  .contact-content form {
+    width: auto;
+  }
+}
+.contact-content form input {
+  border-radius: var(--radius);
+  border-color: var(--color-gray);
+  height: 50px;
+  margin-bottom: 30px;
+  background-color: #fafafa;
+  margin-right: 30px;
+  border-style: solid;
+  z-index: 20;
+}
+@media (max-width: 767px) {
+  .contact-content form input {
+    margin-bottom: 10px;
+  }
+}
+.contact-content form button {
+  display: flex;
+  flex-direction: column;
+  width: 160px;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  border-radius: var(--radius);
+  border: none;
+  background-color: var(--color-black);
+  color: var(--color-light);
+  transition: all 0.3s;
+}
+@media (max-width: 767px) {
+  .contact-content form button {
+    width: 320px;
+  }
+}
+.contact-content form button:hover {
+  color: var(--color-black);
+  background-color: var(--color-gray);
+  border-color: var(--color-black);
+  cursor: pointer;
+}
+.contact-content form label {
+  font-size: 28px;
+}
+.contact-content form label span {
+  color: red;
+}
+
+.contact-form-row {
+  display: flex;
+  flex-direction: row;
+}
+@media (max-width: 767px) {
+  .contact-form-row {
+    flex-direction: column;
+  }
+}
+.contact-form-section {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+}
+
 .footer-section {
   height: 100px;
   background-color: var(--color-dark);
@@ -733,6 +818,7 @@ p {
   transition: background-image 1s ease-in-out;
 }
 
-.slider-heading, .slider-text {
+.slider-heading,
+.slider-text {
   transition: opacity 0.5s ease-in-out;
 }/*# sourceMappingURL=styles.css.map */
